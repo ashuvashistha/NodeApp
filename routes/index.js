@@ -17,4 +17,4 @@ collection.insert({name:userName});
  });
    res.send('successfull');
 });
-module.exports = router;
+module.exports = router; 
