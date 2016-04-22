@@ -4,7 +4,10 @@ var assert = require('assert');
  
 
 module.exports = function connectToMongo(callback) {
-    if (db) { callback(null, db); }
+    if (db) 
+    { 
+        callback(null, db); 
+        }
     else { 
         MongoClient.connect('mongodb://127.0.0.1:27017/nodedb', function(err, conn) {
             db = conn;

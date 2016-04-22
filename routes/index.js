@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/Name', function(req, res, next) {
- // res.render('index', {title :"Express"});
+ 
  var userName= req.body.test;
  db(function (err,db)
  {
