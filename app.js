@@ -8,7 +8,7 @@ var ejs = require('ejs');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var getuser = require('./routes/getuser')
+//var getuser = require('./routes/getuser')
 
 var app = express();
 
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/getuser', getuser);
+//app.use('/getuser', getuser);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

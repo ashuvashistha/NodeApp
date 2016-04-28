@@ -19,7 +19,11 @@ function addUserForWeb ($scope,addUserService){
             pin:$scope.pin,
         };
         addUserService.addUser(user);
-        alert('h');
+      };
+      
+      $scope.getUser=function()
+      {
+       $scope.users=addUserService.getUser();
       }
   }
   app.controller('addUserController', addUserForWeb);

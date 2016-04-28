@@ -1,18 +1,7 @@
 var db = require('../controller/Connection');
+var assert = require('assert');
+var deferred = require('deferred');
 var user= new Object();
-
-var users ={
-"users":[
-    {"firstName":"John", "lastName":"Doe"}, 
-    {"firstName":"Anna",	"lastName":"Smith"},
-    {"firstName":"Peter", "lastName":"Jones"}
-]
-};
-
-user.GetUser =function ()
-{
-    return users;
-}
 
 user.addUser = function(req)
 {
@@ -36,5 +25,51 @@ user.addUser = function(req)
                 pin:requestObject.pin,
             });
        });
+}
+
+user.getUser = function()
+{   
+     var users = null;
+    
+    var def = deferred();
+    db(function (err,db)
+    {
+      collection = db.collection('users');
+      var cursor = collection.find();
+      cursor.each(function (err, doc)
+      { 
+        def.resolve(doc);
+      });
+      
+     }); 
+        
+      return def.promise;      
+}
+
+user.getUserCallback = function(callback)
+{       
+    db(function (err,db)
+    {   
+       // db.open();    
+      collection = db.collection('users');
+      var cursor = collection.find(function(err,doc)
+          {
+            doc.each(function (err, users)
+            { 
+                if(err)
+                {
+                    callback(err);
+                }
+                else
+                {                    
+                    callback(err,users);
+                }
+            }); 
+          });  
+          
+          db.close   
+     }); 
+     
+             
 }
 module.exports= user;

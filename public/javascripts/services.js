@@ -24,6 +24,20 @@ app.service('addUserService',function($resource,$q){
     }
    );
    return deferred.promise;
+  },
+  getUser:function()
+  {
+    var deferred = $q.defer();
+      var resource = $resource('/users/getUser');
+   resource.get(
+   function(response){
+     deferred.resolve(response);
+    },
+   function(response){
+     deferred.reject(response);
+    }
+   );
+   return deferred.promise;
   }
   }
 });

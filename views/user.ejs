@@ -1,7 +1,7 @@
 <html ng-app="myapp">
 <head>
 </head>
-<body ng-controller="addUserController">
+<body ng-include="../users.ejs" ng-controller="addUserController">
 <div><span>User Name</span><input type="text" ng-model="userName"></input></div>
 <div><span>First Name</span><input type="text" ng-model="firstName"></input></div>
 <div><span>Last Name</span><input type="text" ng-model="lastName"></input></div>
@@ -20,7 +20,12 @@
 <input type="submit" value="save" ng-click="adduserNode()" id="saveButton" ></input>
 
 
-
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+<script src="/javascripts/lib/angular/angular.min.js"></script>
+<script src="/javascripts/lib/angular/angular-resource.min.js"></script>
+<script src="/javascripts/app.js"></script>
+<script src="/javascripts/services.js"></script>
+<script src="/javascripts/controllers.js"></script>
 </body>
 </html>
 

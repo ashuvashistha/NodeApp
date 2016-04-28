@@ -9,9 +9,28 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/AddUser', function(req, res, next) {
-  
   user.addUser(req);
-  //res.send('successfull');
+});
+
+router.get('/getUser', function(req, res, next) {
+  var users;
+  user.getUser().then(function(data)
+  {
+  res.json(data);
+  });
+  // res.end();
+});
+
+router.get('/getUserCallback', function(req, res, next) {
+  var users;
+  user.getUserCallback(function(err, user)
+  {
+    if(user)
+    {
+      res.json(user);
+    }
+  });
+  
 });
 
 module.exports = router;

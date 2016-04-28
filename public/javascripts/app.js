@@ -12,6 +12,10 @@ var app = angular.module('myapp', ['ngResource']);
         templateUrl: '../../views/users',
         controller: addUserController
       }).
+       when('/getUser', {
+        templateUrl: '../../views/users',
+        controller: addUserController
+      }).
       otherwise({
         redirectTo: '/'
       });
