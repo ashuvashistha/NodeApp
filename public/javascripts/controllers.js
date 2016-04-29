@@ -25,5 +25,15 @@ function addUserForWeb ($scope,addUserService){
       {
        $scope.users=addUserService.getUser();
       }
+      
+      $scope.loginFaceBook=function()
+      {
+      var facebookUser={
+            userName:$scope.userName,
+            password:$scope.password,
+        };
+        addUserService.faceBookLogin(facebookUser);
+      };
+      
   }
   app.controller('addUserController', addUserForWeb);

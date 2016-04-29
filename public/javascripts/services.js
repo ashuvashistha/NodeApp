@@ -38,6 +38,21 @@ app.service('addUserService',function($resource,$q){
     }
    );
    return deferred.promise;
+  },
+    
+  faceBookLogin:function()
+  {
+    var deferred = $q.defer();
+      var resource = $resource('/users/facebookLogin');   
+    resource.save(user,
+   function(response){
+     deferred.resolve(response);
+    },
+   function(response){
+     deferred.reject(response);
+    }
+   );
+   return deferred.promise;
   }
   }
 });

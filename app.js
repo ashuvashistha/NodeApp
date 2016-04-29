@@ -10,7 +10,7 @@ var expressSession = require('express-session');
 
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+
 //var getuser = require('./routes/getuser')
 
 var app = express();
@@ -29,10 +29,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
+var users = require('./routes/users')(passport);
 
 app.use('/', routes);
 app.use('/users', users);
-//app.use('/getuser', getuser);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
