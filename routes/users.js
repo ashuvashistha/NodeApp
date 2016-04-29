@@ -38,7 +38,7 @@ router.get('/getUserCallback', function(req, res, next) {
 /* GET users listing. */
 
 router.get('/loginfacebook', function(req, res, next) {
-  res.render('facebook');
+  res.render('facebook'); 
 });
 
  
