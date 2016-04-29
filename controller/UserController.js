@@ -49,8 +49,7 @@ user.getUser = function()
 user.getUserCallback = function(callback)
 {       
     db(function (err,db)
-    {   
-       // db.open();    
+    {    
       collection = db.collection('users');
       var cursor = collection.find(function(err,doc)
           {
