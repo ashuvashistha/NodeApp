@@ -7,7 +7,7 @@ var db = require('./Connection');
 var deferred = require('deferred');
 
 module.exports = function(passport) {
-
+var def = deferred();
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
         done(null, user.id);
@@ -19,8 +19,8 @@ module.exports = function(passport) {
     {
       collection = db.collection('users');
       var user = collection.findOne({'userName' : profile.id })
+      
        def.resolve(user);
-       var user;
         def.promise().then(function(data)
        {
        user= data;
@@ -33,7 +33,8 @@ module.exports = function(passport) {
 passport.use('facebook', new FacebookStrategy({
   clientID        : fbConfig.appID,
   clientSecret    : fbConfig.appSecret,
-  callbackURL     : fbConfig.callbackUrl
+  callbackURL     : fbConfig.callbackUrl,
+  profileFields   : ['id', 'displayName', 'name', 'emails','photos']
 },
  
   // facebook will send back the tokens and profile
@@ -45,21 +46,28 @@ passport.use('facebook', new FacebookStrategy({
     {
       collection = db.collection('users');
       var user = collection.findOne({'userName' : profile.id })
-       def.resolve(user);
-       def.promise.then(function(data)
+     user.then(function (data)
+     {
+       if(data)
        {
-         console.log('user found')
+        console.log('user found')
          return data;
-       }, function(err)
+       }
+       else
        {
-        collection.insert(
+            collection.insert(
             {
                 userName:profile.id,
                 firstName: profile.name.givenName,
                 lastName:profile.name.familyName,
                 email:profile.emails[0].value,
             });
-       });
+       }
+     } ,
+     function(err)
+     {
+     
+     });
        });
     });
 }));

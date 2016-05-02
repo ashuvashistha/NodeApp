@@ -35,10 +35,9 @@ user.getUser = function()
     db(function (err,db)
     {
       collection = db.collection('users');
-      var cursor = collection.find();
-      cursor.each(function (err, doc)
-      { 
-        def.resolve(doc);
+      var cursor = collection.find().toArray(function (err,data)
+      {
+           def.resolve(data);
       });
       
      }); 
@@ -51,19 +50,16 @@ user.getUserCallback = function(callback)
     db(function (err,db)
     {    
       collection = db.collection('users');
-      var cursor = collection.find(function(err,doc)
+      var cursor = collection.find().toArray(function(err, doc)
           {
-            doc.each(function (err, users)
-            { 
-                if(err)
-                {
-                    callback(err);
-                }
-                else
-                {                    
-                    callback(err,users);
-                }
-            }); 
+            if(err)
+            {
+                callback(err);
+            }
+            else
+            {                    
+                callback(err,doc);
+            } 
           });  
           
           db.close   
