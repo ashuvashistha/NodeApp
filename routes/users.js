@@ -15,12 +15,10 @@ router.post('/AddUser', function(req, res, next) {
 });
 
 router.get('/getUser', function(req, res, next) {
-  var users;
   user.getUser().then(function(data)
   {
-  res.json(data);
+    res.json(data);
   });
-  // res.end();
 });
 
 router.get('/getUserCallback', function(req, res, next) {
@@ -36,16 +34,18 @@ router.get('/getUserCallback', function(req, res, next) {
 });
 
 /* GET users listing. */
-
 router.get('/loginfacebook', function(req, res, next) {
   res.render('facebook'); 
 });
 
  
-  
-router.get('/login/facebook', 
+/*router.get('/login/facebook', 
   passport.authenticate('facebook', { scope : 'email' }
-));
+));*/
+ 
+ 
+    router.get('/login/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
  
  // handle the callback after facebook has authenticated the user
 router.get('/login/facebook/callback',
@@ -53,6 +53,7 @@ router.get('/login/facebook/callback',
     successRedirect : '/home',
     failureRedirect : '/'
   }));
+  
   return router;
 }
  

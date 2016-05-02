@@ -1,6 +1,6 @@
 // facebook app settings - fb.js
 module.exports = {
-  'appID' : '609253665893406',
-  'appSecret' : '34ba7218fc192ad2deff0b46764dfaea',
-  'callbackUrl' : '/users/login/facebook/callback'
+  'appID' : '486390531553015',
+  'appSecret' : 'c5c161812cb092bd70cd613f43857f27',
+  'callbackUrl' : 'http://localhost:3000/users/login/facebook/callback'
 }

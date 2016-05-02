@@ -1,9 +1,9 @@
 var FacebookStrategy = require('passport-facebook').Strategy;
 //var User = require('/models/user');
-var fbConfig = require('fb.js');
+var fbConfig = require('./fb.js');
 
-var db = require('Connection');
-var assert = require('assert');
+var db = require('./Connection');
+//var assert = require('assert');
 var deferred = require('deferred');
 
 module.exports = function(passport) {
@@ -64,3 +64,4 @@ passport.use('facebook', new FacebookStrategy({
     });
 }));
 }
+
