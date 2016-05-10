@@ -27,16 +27,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSession({
+    cookie : { httpOnly: true, maxAge: 2419200000 },
     secret: 'mySecretKey', 
     proxy: true,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    secure:false
   }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 var initPassport = require('./controller/Facebooklogin');
 initPassport(passport);
+var loginPassport = require('./controller/login');
+loginPassport(passport);
  var users = require('./routes/users')(passport);
 
 app.use('/', routes);

@@ -40,10 +40,10 @@ app.service('addUserService',function($resource,$q){
    return deferred.promise;
   },
     
-  faceBookLogin:function()
+  faceBookLogin:function(user)
   {
     var deferred = $q.defer();
-      var resource = $resource('/users/facebookLogin');   
+      var resource = $resource('/users/login');   
     resource.save(user,
    function(response){
      deferred.resolve(response);

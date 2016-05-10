@@ -15,19 +15,18 @@ var def = deferred();
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-       db(function (err,db)
-    {
-      collection = db.collection('users');
-      var user = collection.findOne({'userName' : profile.id })
-      
-       def.resolve(user);
-        def.promise().then(function(data)
-       {
-       user= data;
-       })
-       return user;
-    });
+      db(function (err,db)
+      {
+        collection = db.collection('users');
+        var user = collection.findOne({'userName' : profile.id })
         
+          def.resolve(user);
+          def.promise().then(function(data)
+          {
+            user= data;
+          })
+          return user;
+      });        
     });
 
 passport.use('facebook', new FacebookStrategy({
@@ -40,9 +39,8 @@ passport.use('facebook', new FacebookStrategy({
   // facebook will send back the tokens and profile
   function(access_token, refresh_token, profile, done) {
     // asynchronous
-    process.nextTick(function() {
-     
-      db(function (err,db)
+    process.nextTick(function() { 
+    db(function (err,db)
     {
       collection = db.collection('users');
       var user = collection.findOne({'userName' : profile.id })

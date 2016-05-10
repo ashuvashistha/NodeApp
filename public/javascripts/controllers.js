@@ -28,11 +28,11 @@ function addUserForWeb ($scope,addUserService){
       
       $scope.loginFaceBook=function()
       {
-      var facebookUser={
-            userName:$scope.userName,
+      var user={
+            username:$scope.userName,
             password:$scope.password,
         };
-        addUserService.faceBookLogin(facebookUser);
+        addUserService.faceBookLogin(user);
       };
       
   }
